@@ -31,20 +31,6 @@ createBubble = () => {
 }
 
 
-
-//componentWillMount();
-//alert("TEST2");
-
-//alert(AudioFloatingWidget.isShown().toString());
-/*
-AudioFloatingWidget.DeviceEventManagerModule.DeviceEventEmitter.addListener(
-         'onPlayPauseClicked',
-         (params) => {
-                alert(params.isPlaying)
-         }
-     );
-*/
-
 export default class ScreenOne extends Component{
 
   static navigationOptions = {
@@ -94,7 +80,7 @@ export default class ScreenOne extends Component{
       <View style={styles.container}>
         <Button
           onPress = {createBubble}
-          title="Test4 Butibot oluştur"
+          title="Test 5 Butibot oluştur"
           color="#841584"
           accessibilityLabel="Learn more about this purple button"
         />

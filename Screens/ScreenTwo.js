@@ -10,40 +10,26 @@ import {
   StyleSheet,
   Text,
   View,
+  FlatList,
   Button,
-  DeviceEventEmitter
+  DeviceEventEmitter,
+
 } from 'react-native';
 
+import { List, ListItem } from "react-native-elements";
 
-
-
-import AudioFloatingWidget from 'react-native-audio-floating-widget';
-
-
-createBubble = () => {
-    AudioFloatingWidget.show();
-    /*AudioFloatingWidget.addListener('onPlayPauseClicked',
-             (params) => {
-                    alert(params.isPlaying)
-             })
-    */
-
-}
-
-
-
-//componentWillMount();
-//alert("TEST2");
-
-//alert(AudioFloatingWidget.isShown().toString());
-/*
-AudioFloatingWidget.DeviceEventManagerModule.DeviceEventEmitter.addListener(
-         'onPlayPauseClicked',
-         (params) => {
-                alert(params.isPlaying)
-         }
-     );
-*/
+  const list_of_products = [
+    {
+      name: 'Yuzuk',
+      avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+      subtitle: 'Yuzuk_1'
+    },
+    {
+      name: 'Kolye',
+      avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+      subtitle: 'Kolye_1'
+    }
+  ]
 
 export default class ScreenTwo extends Component {
  
@@ -81,19 +67,21 @@ export default class ScreenTwo extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Button
-          onPress = {createBubble}
-          title="Test4 Butibot oluştur"
-          color="#841584"
-          accessibilityLabel="Learn more about this purple button"
-        />
-
-        //list goes here
+            
 
 
-
-        <Text style = {{marginTop:this.state.textLocation}}> SCREEN TWO </Text>
+      <View>
+        {
+          list_of_products.map((l, i) => (
+            <ListItem
+              onPress ={()=>{alert('Stock updated!')}}
+              key={i}
+              avatar={{ source: { uri: l.avatar_url } }}
+              title={l.name}
+              subtitle={l.subtitle}
+            />
+          ))
+        }
       </View>
     );
   }
