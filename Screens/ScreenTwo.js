@@ -16,6 +16,8 @@ import {
 
 } from 'react-native';
 
+import SearchBar from 'react-native-searchbar';
+
 import { List, ListItem } from "react-native-elements";
 
   const list_of_products = [
@@ -35,7 +37,7 @@ export default class ScreenTwo extends Component {
  
   constructor(props) {
     super(props);
-    this.state = {initialScreen: true, productsListScreen:false, textLocation: 10 };
+    this.state = {initialScreen: true, productsListScreen:false, textLocation: 10, list: list_of_products };
 
     
   }
@@ -62,6 +64,18 @@ export default class ScreenTwo extends Component {
        //please view available methods in docs
   }
 
+  _handleResults = (results) => {
+    alert(results);
+    alert(results[0]);
+    //alert(results.name);
+    //alert(results.name[0]);
+    this.setState({ list: results });
+    alert(this.state.list);
+    alert(this.state.list[0]);
+    alert(this.state.list.name);
+
+  }
+
 
 
 
@@ -71,17 +85,25 @@ export default class ScreenTwo extends Component {
 
 
       <View>
-        {
-          list_of_products.map((l, i) => (
-            <ListItem
-              onPress ={()=>{alert('Stock updated!')}}
-              key={i}
-              avatar={{ source: { uri: l.avatar_url } }}
-              title={l.name}
-              subtitle={l.subtitle}
-            />
-          ))
-        }
+          <SearchBar
+          ref={(ref) => this.searchBar = ref}
+          data={list_of_products}
+          handleResults={this._handleResults}
+          showOnLoad
+          />
+        <List containerStyle={{marginTop: 80}}>
+          {
+            list_of_products.map((l, i) => (
+              <ListItem 
+                onPress ={()=>{alert('Stock updated!')}}
+                key={i}
+                avatar={{ source: { uri: l.avatar_url } }}
+                title={l.name}
+                subtitle={l.subtitle}
+              />
+            ))
+          }
+        </List>
       </View>
     );
   }
