@@ -37,8 +37,8 @@ export default class ScreenTwo extends Component {
  
   constructor(props) {
     super(props);
-    this.state = {initialScreen: true, productsListScreen:false, textLocation: 10, list: list_of_products };
-
+    this.state = {initialScreen: true, productsListScreen:false, textLocation: 10, results: [] };
+    this._handleResults = this._handleResults.bind(this);
     
   }
 
@@ -69,10 +69,10 @@ export default class ScreenTwo extends Component {
     alert(results[0]);
     //alert(results.name);
     //alert(results.name[0]);
-    this.setState({ list: results });
-    alert(this.state.list);
-    alert(this.state.list[0]);
-    alert(this.state.list.name);
+    this.setState({ results });
+    alert(this.state.results);
+    //alert(this.state.results[0]);
+    //alert(this.state.results.name);
 
   }
 
