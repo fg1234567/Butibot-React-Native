@@ -13,7 +13,8 @@ import {
   FlatList,
   Button,
   DeviceEventEmitter,
-  ScrollView
+  ScrollView,
+  Alert
 
 } from 'react-native';
 
@@ -96,6 +97,9 @@ export default class ScreenTwo extends Component {
 
   }
 
+  stockInc = (l) => {
+    alert(l);
+  }
 
 
 
@@ -117,7 +121,13 @@ export default class ScreenTwo extends Component {
               {
                 list_of_products.map((l, i) => (
                   <ListItem 
-                    onPress ={()=>{alert('Stock updated!')}}
+                    onPress ={()=>{Alert.alert('Stok Güncellemesi!', 'My alert msg', [
+                        {text: 'Stok artır', onPress: () => {this.stockInc(l.name);console.log('call stock increase function here');}},
+                        {text: 'Stok azalt', onPress: () => console.log('call stock decrease function here')},
+                        {text: 'İptal et', onPress: () => console.log('OK Pressed'), style: 'cancel'},
+                         ],
+                        { cancelable: false }
+                      )}}
                     key={i}
                     avatar={{ source: { uri: l.avatar_url } }}
                     title={l.name}
@@ -130,7 +140,13 @@ export default class ScreenTwo extends Component {
               {
                 this.state.results.map((l, i) => (
                   <ListItem 
-                    onPress ={()=>{alert('Stock updated!')}}
+                    onPress ={()=>{Alert.alert('Stok Güncellemesi 2!', 'My alert msg', [
+                        {text: 'Stok artır', onPress: () => console.log('call stock increase function here')},
+                        {text: 'Stok azalt', onPress: () => console.log('call stock decrease function here')},
+                        {text: 'İptal et', onPress: () => console.log('OK Pressed'), style: 'cancel'},
+                         ],
+                        { cancelable: false }
+                      )}}
                     key={i}
                     avatar={{ source: { uri: l.avatar_url } }}
                     title={l.name}
