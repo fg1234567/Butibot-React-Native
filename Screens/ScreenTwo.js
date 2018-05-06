@@ -104,6 +104,22 @@ export default class ScreenTwo extends Component {
             ))
           }
         </List>
+
+        <List containerStyle={{marginTop: 80}}>
+          {
+            this.state.results.map((l, i) => (
+              <ListItem 
+                onPress ={()=>{alert('Stock updated!')}}
+                key={i}
+                avatar={{ source: { uri: l.avatar_url } }}
+                title={l.name}
+                subtitle={l.subtitle}
+              />
+            ))
+          }
+        </List>
+
+
       </View>
     );
   }
