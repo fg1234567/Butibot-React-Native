@@ -13,6 +13,7 @@ import {
   FlatList,
   Button,
   DeviceEventEmitter,
+  ScrollView
 
 } from 'react-native';
 
@@ -22,16 +23,35 @@ import { List, ListItem } from "react-native-elements";
 
   const list_of_products = [
     {
-      name: 'Yuzuk',
-      avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-      subtitle: 'Yuzuk_1'
+      name: 'Yeni 3Ct Mega Kraltacı Beştaş',
+      avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg'
     },
     {
-      name: 'Kolye',
-      avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-      subtitle: 'Kolye_1'
+      name: 'Elmas Montür Divanhane Model Yüzük',
+      avatar_url: 'https://st2.myideasoft.com/idea/bm/73/myassets/products/281/divane-yuzuk-129tl_min.jpg?revision=1477550323'
+    },
+    {
+      name: 'Mini A Model Beştaş Yüzük',
+      avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg'
+    },
+    {
+      name: 'A Model Beştaş Yüzük',
+      avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg'
+    },
+    {
+      name: 'Oval Safir İtalyan Kilit Küpe',
+      avatar_url: 'https://st2.myideasoft.com/idea/bm/73/myassets/products/106/img-1677_min.jpg?revision=1524684573'
+    },
+    {
+      name: 'Tasarım Tamtur Küpe',
+      avatar_url: 'https://st1.myideasoft.com/idea/bm/73/myassets/products/312/88309-copy_min.jpg?revision=1525513906'
+    },
+    {
+      name: 'Swarovski Elmas Montür Sıvama V Model Tektaş Küpe',
+      avatar_url: 'https://st3.myideasoft.com/idea/bm/73/myassets/products/777/takc-31844-swa_min.jpg?revision=1480352178'
     }
   ]
+
 
 export default class ScreenTwo extends Component {
  
@@ -65,12 +85,12 @@ export default class ScreenTwo extends Component {
   }
 
   _handleResults = (results) => {
-    alert(results);
-    alert(results[0]);
+    //alert(results);
+    //alert(results[0]);
     //alert(results.name);
     //alert(results.name[0]);
     this.setState({ results });
-    alert(this.state.results);
+    //alert(this.state.results);
     //alert(this.state.results[0]);
     //alert(this.state.results.name);
 
@@ -91,34 +111,34 @@ export default class ScreenTwo extends Component {
           handleResults={this._handleResults}
           showOnLoad
           />
-        <List containerStyle={{marginTop: 80}}>
-          {
-            list_of_products.map((l, i) => (
-              <ListItem 
-                onPress ={()=>{alert('Stock updated!')}}
-                key={i}
-                avatar={{ source: { uri: l.avatar_url } }}
-                title={l.name}
-                subtitle={l.subtitle}
-              />
-            ))
-          }
-        </List>
 
-        <List containerStyle={{marginTop: 80}}>
-          {
-            this.state.results.map((l, i) => (
-              <ListItem 
-                onPress ={()=>{alert('Stock updated!')}}
-                key={i}
-                avatar={{ source: { uri: l.avatar_url } }}
-                title={l.name}
-                subtitle={l.subtitle}
-              />
-            ))
-          }
-        </List>
+        <ScrollView>
+            <List containerStyle={{marginTop: 80}}>
+              {
+                list_of_products.map((l, i) => (
+                  <ListItem 
+                    onPress ={()=>{alert('Stock updated!')}}
+                    key={i}
+                    avatar={{ source: { uri: l.avatar_url } }}
+                    title={l.name}
+                  />
+                ))
+              }
+            </List>
 
+            <List containerStyle={{marginTop: 80}}>
+              {
+                this.state.results.map((l, i) => (
+                  <ListItem 
+                    onPress ={()=>{alert('Stock updated!')}}
+                    key={i}
+                    avatar={{ source: { uri: l.avatar_url } }}
+                    title={l.name}
+                  />
+                ))
+              }
+            </List>
+        </ScrollView>
 
       </View>
     );
