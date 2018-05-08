@@ -58,7 +58,7 @@ export default class ScreenTwo extends Component {
  
   constructor(props) {
     super(props);
-    this.state = {initialScreen: true, productsListScreen:false, textLocation: 10, results: [] };
+    this.state = {initialScreen: true, productsListScreen:false, textLocation: 10, results: list_of_products };
     this._handleResults = this._handleResults.bind(this);
     
   }
@@ -86,19 +86,19 @@ export default class ScreenTwo extends Component {
   }
 
   _handleResults = (results) => {
-    //alert(results);
-    //alert(results[0]);
-    //alert(results.name);
-    //alert(results.name[0]);
+    
+
+    let resultsLength = Object.keys(results).length; // this is the number of list items found via "item search" 
+
+    //alert(resultsLength);
+
+
     this.setState({ results });
-    //alert(this.state.results);
-    //alert(this.state.results[0]);
-    //alert(this.state.results.name);
 
   }
 
-  stockInc = (l) => {
-    alert(l);
+  stockInc = (name) => {
+    alert(name);
   }
 
 
@@ -117,31 +117,14 @@ export default class ScreenTwo extends Component {
           />
 
         <ScrollView>
-            <List containerStyle={{marginTop: 80}}>
-              {
-                list_of_products.map((l, i) => (
-                  <ListItem 
-                    onPress ={()=>{Alert.alert('Stok Güncellemesi!', 'My alert msg', [
-                        {text: 'Stok artır', onPress: () => {this.stockInc(l.name);console.log('call stock increase function here');}},
-                        {text: 'Stok azalt', onPress: () => console.log('call stock decrease function here')},
-                        {text: 'İptal et', onPress: () => console.log('OK Pressed'), style: 'cancel'},
-                         ],
-                        { cancelable: false }
-                      )}}
-                    key={i}
-                    avatar={{ source: { uri: l.avatar_url } }}
-                    title={l.name}
-                  />
-                ))
-              }
-            </List>
+
 
             <List containerStyle={{marginTop: 80}}>
               {
                 this.state.results.map((l, i) => (
                   <ListItem 
                     onPress ={()=>{Alert.alert('Stok Güncellemesi 2!', 'My alert msg', [
-                        {text: 'Stok artır', onPress: () => console.log('call stock increase function here')},
+                        {text: 'Stok artır', onPress: () => {this.stockInc(l.name);console.log('call stock increase function here');}},
                         {text: 'Stok azalt', onPress: () => console.log('call stock decrease function here')},
                         {text: 'İptal et', onPress: () => console.log('OK Pressed'), style: 'cancel'},
                          ],
