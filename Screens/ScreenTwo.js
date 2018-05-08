@@ -25,31 +25,38 @@ import { List, ListItem } from "react-native-elements";
   const list_of_products = [
     {
       name: 'Yeni 3Ct Mega Kraltacı Beştaş',
-      avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg'
+      avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+      stock: 5
     },
     {
       name: 'Elmas Montür Divanhane Model Yüzük',
-      avatar_url: 'https://st2.myideasoft.com/idea/bm/73/myassets/products/281/divane-yuzuk-129tl_min.jpg?revision=1477550323'
+      avatar_url: 'https://st2.myideasoft.com/idea/bm/73/myassets/products/281/divane-yuzuk-129tl_min.jpg?revision=1477550323',
+      stock: 5
     },
     {
       name: 'Mini A Model Beştaş Yüzük',
-      avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg'
+      avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+      stock: 5
     },
     {
       name: 'A Model Beştaş Yüzük',
-      avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg'
+      avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+      stock: 5
     },
     {
       name: 'Oval Safir İtalyan Kilit Küpe',
-      avatar_url: 'https://st2.myideasoft.com/idea/bm/73/myassets/products/106/img-1677_min.jpg?revision=1524684573'
+      avatar_url: 'https://st2.myideasoft.com/idea/bm/73/myassets/products/106/img-1677_min.jpg?revision=1524684573',
+      stock: 5
     },
     {
       name: 'Tasarım Tamtur Küpe',
-      avatar_url: 'https://st1.myideasoft.com/idea/bm/73/myassets/products/312/88309-copy_min.jpg?revision=1525513906'
+      avatar_url: 'https://st1.myideasoft.com/idea/bm/73/myassets/products/312/88309-copy_min.jpg?revision=1525513906',
+      stock: 5
     },
     {
       name: 'Swarovski Elmas Montür Sıvama V Model Tektaş Küpe',
-      avatar_url: 'https://st3.myideasoft.com/idea/bm/73/myassets/products/777/takc-31844-swa_min.jpg?revision=1480352178'
+      avatar_url: 'https://st3.myideasoft.com/idea/bm/73/myassets/products/777/takc-31844-swa_min.jpg?revision=1480352178',
+      stock: 5
     }
   ]
 
@@ -133,6 +140,7 @@ export default class ScreenTwo extends Component {
                     key={i}
                     avatar={{ source: { uri: l.avatar_url } }}
                     title={l.name}
+                    badge={{ value: 3, textStyle: { color: 'orange' }, containerStyle: { marginTop: -20 } }}
                   />
                 ))
               }
