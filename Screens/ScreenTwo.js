@@ -104,10 +104,38 @@ export default class ScreenTwo extends Component {
 
   }
 
-  stockInc = (name) => {
-    alert(name);
+  stockInc = (name,stock,i) => {
+
+    let newStock = ++stock;
+    let orderID = i+1;
+
+    alert(orderID + ' numaralı ürünün miktarı ' + newStock + ' olarak değiştirildi!');
+    
+    let tempArray = JSON.parse(JSON.stringify(this.state)).results;
+
+    tempArray[i].stock = newStock;
+
+    this.setState({
+      results: tempArray,
+    });
+
   }
 
+  stockDec = (name,stock,i) => {
+
+    let newStock = --stock;
+    let orderID = i+1;
+    alert(orderID + ' numaralı ürünün miktarı ' + newStock + ' olarak değiştirildi!');
+    
+    let tempArray = JSON.parse(JSON.stringify(this.state)).results;
+
+    tempArray[i].stock = newStock;
+
+    this.setState({
+      results: tempArray,
+    });
+
+  }
 
 
   render() {
@@ -130,9 +158,9 @@ export default class ScreenTwo extends Component {
               {
                 this.state.results.map((l, i) => (
                   <ListItem 
-                    onPress ={()=>{Alert.alert('Stok Güncellemesi 2!', 'My alert msg', [
-                        {text: 'Stok artır', onPress: () => {this.stockInc(l.name);console.log('call stock increase function here');}},
-                        {text: 'Stok azalt', onPress: () => console.log('call stock decrease function here')},
+                    onPress ={()=>{Alert.alert('Stok Güncellemesi', 'İşlemi seçiniz', [
+                        {text: 'Stok artır', onPress: () => {this.stockInc(l.name,l.stock,i)}},
+                        {text: 'Stok azalt', onPress: () => {this.stockDec(l.name,l.stock,i)}},
                         {text: 'İptal et', onPress: () => console.log('OK Pressed'), style: 'cancel'},
                          ],
                         { cancelable: false }
@@ -140,7 +168,7 @@ export default class ScreenTwo extends Component {
                     key={i}
                     avatar={{ source: { uri: l.avatar_url } }}
                     title={l.name}
-                    badge={{ value: 3, textStyle: { color: 'orange' }, containerStyle: { marginTop: -20 } }}
+                    badge={{ value: l.stock, textStyle: { color: 'orange' }, containerStyle: {flex:1, alignItems:'center' } }}
                   />
                 ))
               }
