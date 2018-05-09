@@ -80,7 +80,7 @@ export default class ScreenOne extends Component{
       <View style={styles.container}>
         <Button
           onPress = {createBubble}
-          title="Test 28 Butibot oluştur"
+          title="Test 35 Butibot oluştur"
           color="#841584"
           accessibilityLabel="Learn more about this purple button"
         />

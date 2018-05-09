@@ -22,6 +22,8 @@ import SearchBar from 'react-native-searchbar';
 
 import { List, ListItem } from "react-native-elements";
 
+import * as firebase from 'firebase';
+
   const list_of_products = [
     {
       name: 'Yeni 3Ct Mega Kraltacı Beştaş',
@@ -67,6 +69,33 @@ export default class ScreenTwo extends Component {
     super(props);
     this.state = {initialScreen: true, productsListScreen:false, textLocation: 10, results: list_of_products };
     this._handleResults = this._handleResults.bind(this);
+
+    this.config = {
+    apiKey: "AIzaSyBBV0yx8wqj0f-vWzrrfutjNC_n_lm22oM",
+    authDomain: "butibot-383bf.firebaseapp.com",
+    databaseURL: "https://butibot-383bf.firebaseio.com",
+    projectId: "butibot-383bf",
+    storageBucket: "",
+    messagingSenderId: "772911870238"
+    };
+    
+    this.firebaseApp = firebase.initializeApp(this.config);
+
+    this.myFirebaseRef = this.firebaseApp.database().ref();
+
+    this.myFirebaseRef.on('value' ,  (snapshot) => {
+      
+      let resultsLength = Object.keys(snapshot.val()).length; // this is the number of list items retrieved from database 
+
+      //alert(resultsLength);
+
+      //alert(snapshot.val());
+      this.setState({results: snapshot.val()});
+
+
+
+    });
+
     
   }
 
@@ -119,6 +148,8 @@ export default class ScreenTwo extends Component {
       results: tempArray,
     });
 
+    this.myFirebaseRef.set(tempArray);
+
   }
 
   stockDec = (name,stock,i) => {
@@ -134,6 +165,8 @@ export default class ScreenTwo extends Component {
     this.setState({
       results: tempArray,
     });
+
+    this.myFirebaseRef.set(tempArray);
 
   }
 
